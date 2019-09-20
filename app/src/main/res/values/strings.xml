@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Doko Maps</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="explore">Explore</string>
+    <string name="map">Map</string>
+    <string name="search_title">Search</string>
+    <string name="top_search">Top Search</string>
+    <string name="top_countries">Top Countries</string>
+    <string name="top_tags">Top Tags</string>
+</resources>
