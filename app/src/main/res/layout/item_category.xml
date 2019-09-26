@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvItemCategory"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    card_view:contentPadding="7dp"
+    card_view:cardCornerRadius="7dp"
+    card_view:cardElevation="7dp"
+    card_view:cardBackgroundColor="#FF9800"
+    android:layout_margin="1dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tvItemCategory"
+            android:gravity="center"
+            android:background="?android:selectableItemBackground"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

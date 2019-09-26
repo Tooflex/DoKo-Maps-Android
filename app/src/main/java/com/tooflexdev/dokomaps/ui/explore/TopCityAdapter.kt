@@ -47,12 +47,12 @@ class TopCityAdapter(private var topCities: List<TopCity?> = emptyList()) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val topCity = topCities[position]
-        holder.name.text = "${topCity?.name}"
-        context?.let { Glide.with(it).load(topCity?.url).into(holder.img) }
+        val TopCity = topCities[position]
+        holder.name.text = "${TopCity?.name}"
+        context?.let { Glide.with(it).load(TopCity?.url).into(holder.img) }
         holder.name.setOnClickListener {
             val intentCityDetails = Intent(context, CityDetails::class.java)
-            intentCityDetails.putExtra("city",topCity?.name)
+            intentCityDetails.putExtra("city",TopCity?.name)
             context?.startActivity(intentCityDetails)
         }
 

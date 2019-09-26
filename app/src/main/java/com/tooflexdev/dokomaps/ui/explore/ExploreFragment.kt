@@ -1,23 +1,20 @@
 package com.tooflexdev.dokomaps.ui.explore
 
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
-import android.view.*
-import android.view.inputmethod.InputMethodManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.tooflexdev.dokomaps.R
-import kotlinx.android.synthetic.main.fragment_explore.*
 import com.tooflexdev.dokomaps.model.TopCity
 import com.tooflexdev.dokomaps.model.TopCountry
 import com.tooflexdev.dokomaps.model.TopSearch
 import com.tooflexdev.dokomaps.model.TopTag
 import com.tooflexdev.dokomaps.util.MarginItemDecoration
-import androidx.core.widget.NestedScrollView
-
+import kotlinx.android.synthetic.main.fragment_explore.*
 
 
 class ExploreFragment : Fragment() {

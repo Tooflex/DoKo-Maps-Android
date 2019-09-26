@@ -19,23 +19,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/top_search"
+        android:text="@string/city_maps"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewWeather" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTopSearchCityDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
+
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTopSearchCityDetails"
-        tools:listitem="@layout/item_top_search" />
+        tools:listitem="@layout/item_map" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

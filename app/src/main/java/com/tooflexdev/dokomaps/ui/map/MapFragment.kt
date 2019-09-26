@@ -1,27 +1,35 @@
 package com.tooflexdev.dokomaps.ui.map
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.maps.*
 import com.tooflexdev.dokomaps.R
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.views.MapView
-import android.preference.PreferenceManager
-import org.osmdroid.config.Configuration
-import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.overlay.OverlayItem
-import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.SupportMapFragment
+import com.tooflexdev.dokomaps.model.Category
+import com.tooflexdev.dokomaps.util.MarginItemDecoration
+import kotlinx.android.synthetic.main.fragment_map.*
 
 
-class MapFragment : Fragment() {
+class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mapViewModel: MapViewModel
 
-    private val map: MapView by lazy { view!!.findViewById<MapView>(R.id.map) }
+    private var map: SupportMapFragment? = null
+
+    @Nullable
+    private var googleMap: GoogleMap? = null
+
+    private lateinit var categoryAdapter: CategoryAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,60 +39,85 @@ class MapFragment : Fragment() {
         mapViewModel =
             ViewModelProviders.of(this).get(MapViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
+
+        // Gets the MapView from the XML layout and creates it
+        val mapFragment = childFragmentManager
+            .findFragmentById(R.id.mapView) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //handle permissions first, before map is created. not depicted here
+        categoryAdapter = CategoryAdapter()
 
-        //load/initialize the osmdroid configuration, this can be done
-        val ctx = context
-        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
-        //setting this before the layout is inflated is a good idea
-        //it 'should' ensure that the map has a writable location for the map cache, even without permissions
-        //if no tiles are displayed, you can try overriding the cache path using Configuration.getInstance().setCachePath
-        //see also StorageUtils
-        //note, the load method also sets the HTTP User Agent to your application's package name, abusing osm's tile servers will get you banned based on this string
+        rvMapCategories.adapter = categoryAdapter
 
-        //inflate and create the map
-
-        map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
-        map.setZoomRounding(true)
-        map.setMultiTouchControls(true)
-
-        val mapController = map.controller
-        mapController.setZoom(9.5)
-        val startPoint = GeoPoint(48.8583, 2.2944)
-        mapController.setCenter(startPoint)
-
-        //your items
-        val items = ArrayList<OverlayItem>()
-        items.add(
-            OverlayItem(
-                "Title",
-                "Description",
-                GeoPoint(48.8583, 2.2944)
-            )
-        ) // Lat/Lon decimal degrees
-
-//the overlay
-        val mOverlay = ItemizedOverlayWithFocus(items,
-            object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
-                override fun onItemSingleTapUp(index: Int, item: OverlayItem): Boolean {
-                    //do something
-                    return true
-                }
-
-                override fun onItemLongPress(index: Int, item: OverlayItem): Boolean {
-                    return false
-                }
-            }, context
+        rvMapCategories.addItemDecoration(
+            MarginItemDecoration(
+                resources.getDimension(R.dimen.default_padding).toInt())
         )
-        mOverlay.setFocusItemsOnTap(true)
 
-        map.overlays.add(mOverlay)
+        val categories = populateCategories()
+
+        categoryAdapter.setCategories(categories)
+
+        categoryAdapter.notifyDataSetChanged()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        map?.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        map?.onPause()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        map?.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        map?.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        map?.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        map?.onLowMemory()
+    }
+
+    override fun onMapReady(googleMap: GoogleMap?) {
+        this.googleMap = googleMap
+
+        // Add a marker in Sydney, Australia, and move the camera.
+        val sydney = LatLng(-34.0, 151.0)
+        googleMap?.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+    }
+
+    private fun populateCategories(): ArrayList<Category> {
+
+        val topCities = ArrayList<Category>()
+        topCities.add(Category(emptyList(), "Bars"))
+        topCities.add(Category(emptyList(), "Resto"))
+        topCities.add(Category(emptyList(), "Club"))
+        topCities.add(Category(emptyList(), "Sights"))
+
+        return topCities
 
     }
 }

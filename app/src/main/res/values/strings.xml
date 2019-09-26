@@ -9,4 +9,5 @@
     <string name="top_search">Top Search</string>
     <string name="top_countries">Top Countries</string>
     <string name="top_tags">Top Tags</string>
+    <string name="city_maps">%1$s Maps</string>
 </resources>

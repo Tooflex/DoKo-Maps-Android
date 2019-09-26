@@ -330,4 +330,17 @@
     <color name="photo_tint">#88101010</color>
     <color name="photo_tint_purple">#f4f1fa</color>
 
+    <integer-array name="category_colors">
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/red</item>
+        <item>@color/blue_900</item>
+        <item>@color/dark_purple</item>
+        <item>@color/green_900</item>
+        <item>@color/orange_900</item>
+        <item>@color/red_900</item>
+    </integer-array>
+
 </resources>
