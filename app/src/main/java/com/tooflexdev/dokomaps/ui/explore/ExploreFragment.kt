@@ -108,10 +108,10 @@ class ExploreFragment : Fragment() {
     private fun populateTopSearch(): ArrayList<TopSearch> {
 
         val topCities = ArrayList<TopSearch>()
-        topCities.add(TopSearch("Restaurant", ""))
-        topCities.add(TopSearch("Bar", ""))
-        topCities.add(TopSearch("Beach", ""))
-        topCities.add(TopSearch("Hotel", ""))
+        topCities.add(TopSearch("Restaurant", "https://cdn.dokomaps.com/chizus/10.jpeg"))
+        topCities.add(TopSearch("Bar", "https://cdn.dokomaps.com/chizus/9.jpg"))
+        topCities.add(TopSearch("Beach", "https://www.planetware.com/photos-large/USHI/hawaii-honolulu-beaches-oahu-kailua-beach.jpg"))
+        topCities.add(TopSearch("Hotel", "https://ghc.anitab.org/wp-content/uploads/sites/2/2017/07/rosen-center-hotel-700x466.jpg"))
 
         return topCities
 

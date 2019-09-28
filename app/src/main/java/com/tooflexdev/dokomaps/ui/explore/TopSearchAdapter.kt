@@ -1,17 +1,23 @@
 package com.tooflexdev.dokomaps.ui.explore
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tooflexdev.dokomaps.R
 import com.tooflexdev.dokomaps.model.TopSearch
 
 class TopSearchAdapter(private var topSearches: List<TopSearch?> = emptyList()) : RecyclerView.Adapter<TopSearchAdapter.ViewHolder>()  {
 
 
+    var context: Context? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(inflater.inflate(R.layout.item_top_search, parent, false))
     }
@@ -39,6 +45,7 @@ class TopSearchAdapter(private var topSearches: List<TopSearch?> = emptyList()) 
 
         val topSearch = topSearches[position]
         holder.name.text = "${topSearch?.name}"
+        context?.let { Glide.with(it).load(topSearch?.url).into(holder.image) }
 
     }
 
@@ -47,6 +54,8 @@ class TopSearchAdapter(private var topSearches: List<TopSearch?> = emptyList()) 
 
         private var view: View = v
         val name: TextView = view.findViewById(R.id.tvItemTopSearches)
+        val image: ImageView = view.findViewById(R.id.ivTopSearchCard)
+
 
     }
 

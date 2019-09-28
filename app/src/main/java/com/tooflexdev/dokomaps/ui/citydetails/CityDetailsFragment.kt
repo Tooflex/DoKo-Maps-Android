@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import com.airbnb.lottie.LottieAnimationView
 import com.tooflexdev.dokomaps.R
 import com.tooflexdev.dokomaps.model.DokoMap
 import com.tooflexdev.dokomaps.model.Owner
@@ -20,7 +21,7 @@ class CityDetailsFragment : Fragment() {
 
     private val tvWeatherCardCityName by lazy { view?.findViewById<TextView>(R.id.textViewCardCityName) }
     private val tvCardWeatherDescription by lazy { view?.findViewById<TextView>(R.id.textViewCardWeatherDescription) }
-    private val ivCardWeatherIcon by lazy { view?.findViewById<ImageView>(R.id.imageViewCardWeatherIcon) }
+    private val ivCardWeatherIcon by lazy { view?.findViewById<LottieAnimationView>(R.id.animationImageViewCardWeatherIcon) }
     private val tvCardCurrentTemp by lazy { view?.findViewById<TextView>(R.id.textViewCardCurrentTemp) }
     private val tvCardMaxTemp by lazy { view?.findViewById<TextView>(R.id.textViewCardMaxTemp) }
     private val tvCardMinTemp by lazy { view?.findViewById<TextView>(R.id.textViewCardMinTemp) }

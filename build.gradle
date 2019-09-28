@@ -31,4 +31,5 @@ ext {
     room_version = '2.2.0-beta01'
     coroutines = '1.1.1'
     retrofit = '2.6.1'
+    lottieVersion = '3.0.7'
 }
