@@ -80,16 +80,24 @@ class ExploreFragment : Fragment() {
         val tags = populateTopTags()
         val countries = populateTopCountires()
 
+        exploreViewModel.getCountries().observe(this, Observer {
+            val topCities = ArrayList<TopCity>()
+            for(countryResponse in it) {
+                topCities.add(TopCity(countryResponse.country_name, countryResponse.country_photo))
+            }
+            topCityAdapter.setCities(topCities)
+            topCityAdapter.notifyDataSetChanged()
+        })
 
-        topCityAdapter.setCities(cities)
+        // topCityAdapter.setCities(cities)
         topSearchAdapter.setTopSearches(searches)
         topTagAdapter.setTags(tags)
-        topCountryAdapter.setCountries(countries)
+        // topCountryAdapter.setCountries(countries)
 
-        topCityAdapter.notifyDataSetChanged()
+        // topCityAdapter.notifyDataSetChanged()
         topSearchAdapter.notifyDataSetChanged()
         topTagAdapter.notifyDataSetChanged()
-        topCountryAdapter.notifyDataSetChanged()
+        // topCountryAdapter.notifyDataSetChanged()
     }
 
 

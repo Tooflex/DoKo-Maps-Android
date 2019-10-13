@@ -11,7 +11,7 @@ import androidx.lifecycle.MutableLiveData
 
 
 
-class WeatherRepository() {
+class WeatherRepository {
     val TAG = "LibraryRepository"
 
     fun getCityWeather(city: String): LiveData<CityWeather> {

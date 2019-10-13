@@ -5,13 +5,21 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.google.gson.GsonBuilder
+import com.google.gson.Gson
+
+
 
 object DokoAPI {
     private var retrofit: Retrofit? = null
-    private val BASE_URL = ""
+    private const val BASE_URL = "https://dokomaps.com/api/"
+
+    var gson = GsonBuilder()
+        .setLenient()
+        .create()
 
 
-    val libraryClient: WeatherService
+    val dokoClient: DokoService
         get() {
             if (retrofit == null) {
 
@@ -24,10 +32,10 @@ object DokoAPI {
 
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okHttpClient)
                     .build()
             }
-            return retrofit!!.create(WeatherService::class.java)
+            return retrofit!!.create(DokoService::class.java)
         }
 }

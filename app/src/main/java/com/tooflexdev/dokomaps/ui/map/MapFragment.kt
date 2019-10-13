@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.SupportMapFragment
 import com.tooflexdev.dokomaps.model.Category
+import com.tooflexdev.dokomaps.model.TopSearch
+import com.tooflexdev.dokomaps.ui.explore.TopSearchAdapter
 import com.tooflexdev.dokomaps.util.MarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_map.*
 
@@ -29,6 +31,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var googleMap: GoogleMap? = null
 
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var topSearchAdapter: TopSearchAdapter
 
 
     override fun onCreateView(
@@ -53,19 +56,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState)
 
         categoryAdapter = CategoryAdapter()
+        topSearchAdapter = TopSearchAdapter()
 
-        rvMapCategories.adapter = categoryAdapter
+        rvMapCategories.adapter = topSearchAdapter
 
         rvMapCategories.addItemDecoration(
             MarginItemDecoration(
                 resources.getDimension(R.dimen.default_padding).toInt())
         )
 
-        val categories = populateCategories()
+        // val categories = populateCategories()
 
-        categoryAdapter.setCategories(categories)
+        // categoryAdapter.setCategories(categories)
+        topSearchAdapter.setTopSearches(populateTopSearch())
 
-        categoryAdapter.notifyDataSetChanged()
+        // categoryAdapter.notifyDataSetChanged()
+        topSearchAdapter.setTopSearches(populateTopSearch())
 
     }
 
@@ -116,6 +122,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         topCities.add(Category(emptyList(), "Resto"))
         topCities.add(Category(emptyList(), "Club"))
         topCities.add(Category(emptyList(), "Sights"))
+
+        return topCities
+
+    }
+
+    private fun populateTopSearch(): ArrayList<TopSearch> {
+
+        val topCities = ArrayList<TopSearch>()
+        topCities.add(TopSearch("Restaurant", "https://cdn.dokomaps.com/chizus/10.jpeg"))
+        topCities.add(TopSearch("Bar", "https://cdn.dokomaps.com/chizus/9.jpg"))
+        topCities.add(TopSearch("Beach", "https://www.planetware.com/photos-large/USHI/hawaii-honolulu-beaches-oahu-kailua-beach.jpg"))
+        topCities.add(TopSearch("Hotel", "https://ghc.anitab.org/wp-content/uploads/sites/2/2017/07/rosen-center-hotel-700x466.jpg"))
 
         return topCities
 
