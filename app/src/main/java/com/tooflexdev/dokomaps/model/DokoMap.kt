@@ -12,7 +12,7 @@ data class DokoMap(
     val latitude: Double,
     val longitude: Double,
     val owner: Owner,
-    val places: List<PlaceX>,
+    val places: List<Place>,
     val placesCount: Int,
     val `public`: Boolean,
     val title: String,

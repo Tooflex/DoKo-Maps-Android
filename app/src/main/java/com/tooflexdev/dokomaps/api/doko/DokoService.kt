@@ -15,13 +15,13 @@ interface DokoService {
     @GET("countries")
     fun getCountries(): Call<CountryResponse>
 
-    @GET("/country/{country_code}")
-    fun getCountry(@Path("country_code") isbnList:String): Call<CountryResponse>
+    @GET("country/{country_code}")
+    fun getCountry(@Path("country_code") countryCode:String): Call<CountryResponse>
 
-    @GET("/map/{map_id}")
+    @GET("map/{map_id}")
     fun getMap(@Path("map_id") mapId:String): Call<DokoMap>
 
-    @GET("/map/{city_code}")
+    @GET("map/{city_code}")
     fun getCityMap(@Path("city_code") mapId:String): Call<CityDetails>
 
 }

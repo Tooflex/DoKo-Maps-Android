@@ -1,11 +1,14 @@
 package com.tooflexdev.dokomaps.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "owner")
 data class Owner(
     val createdAt: Long,
     val email: String,
-    val id: Int,
+    @PrimaryKey val id: Int,
     val lastSeenAt: Long,
-    val password: String,
     val updatedAt: Long,
     val username: String
 )

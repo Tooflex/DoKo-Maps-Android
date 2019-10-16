@@ -40,10 +40,10 @@ class DokoRepository {
         return data
     }
 
-    fun getCountry(countryCode: String) {
-        val data = MutableLiveData<Country>()
+    fun getCountry(countryCode: String): LiveData<List<Country>> {
+        val data = MutableLiveData<List<Country>>()
 
-        DokoAPI.dokoClient.getCountries()
+        DokoAPI.dokoClient.getCountry(countryCode)
             .enqueue(object : Callback<CountryResponse> {
                 override fun onFailure(call: Call<CountryResponse>, t: Throwable) {
                     Log.e(TAG, t.localizedMessage)
